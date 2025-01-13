@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: galaxy
+      author: Matvey
+      changes:
+        - sqlFile:
+            path: db/changelog/galaxyTableCreate.sql
+  - changeSet:
+      id: star_system
+      author: Matvey
+      changes:
+        - sqlFile:
+            path: db/changelog/starSystemsTableCreate.sql
+  - changeSet:
+      id: star
+      author: Matvey
+      changes:
+        - sqlFile:
+            path: db/changelog/starTableCreate.sql
+  - changeSet:
+      id: planet
+      author: Matvey
+      changes:
+        - sqlFile:
+            path: db/changelog/planetTableCreate.sql
+
+
+
