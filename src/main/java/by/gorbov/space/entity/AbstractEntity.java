@@ -21,4 +21,7 @@ public class AbstractEntity {
 
     @Column(name = "speed")
     protected Long speed;
+
+    @Column(name = "image_path")
+    protected String imagePath;
 }

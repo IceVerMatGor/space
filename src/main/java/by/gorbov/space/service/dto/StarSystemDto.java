@@ -22,6 +22,9 @@ public class StarSystemDto {
 
     private List<PlanetDto> planetDtoList;
 
+    private String imagePath;
+
+
     private Long galaxyId;
 
 

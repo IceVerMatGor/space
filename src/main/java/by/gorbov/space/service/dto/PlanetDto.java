@@ -15,4 +15,7 @@ public class PlanetDto {
 
     private Long speed;
 
+    private String imagePath;
+
+
 }

@@ -3,5 +3,6 @@ CREATE TABLE star_system (
  name varchar,
  mass bigint,
  speed bigint,
+ image_path varchar,
  galaxy_id bigint REFERENCES galaxy(id)
 )

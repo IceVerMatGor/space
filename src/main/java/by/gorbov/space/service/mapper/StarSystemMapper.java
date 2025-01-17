@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {StarMapper.class, PlanetMapper.class})
 public interface StarSystemMapper {
 
     List<StarSystem> starSystemDtosToStarSystems(List<StarSystemDto> starSystemDtos);

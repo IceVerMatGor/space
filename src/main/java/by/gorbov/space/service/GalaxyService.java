@@ -6,24 +6,22 @@ import by.gorbov.space.service.mapper.GalaxyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class GalaxyService {
+
+public interface GalaxyService {
 
 
-    private final GalaxyMapper galaxyMapper;
+    void uploadPicture(MultipartFile picture,GalaxyDto galaxyDto);
 
-    public void to(){
-        List<Galaxy> galaxies = new ArrayList<>();
-        Galaxy galaxy = new Galaxy();
-        galaxies.add(galaxy);
+    byte[] getPicture(Long id);
 
-        List<GalaxyDto> galaxyDtos = galaxyMapper.galaxiesToGalaxiesDto(galaxies);
-        System.out.println("kk");
-    }
+    List<GalaxyDto> getGalaxies();
+
+
+
 
 }

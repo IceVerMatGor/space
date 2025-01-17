@@ -13,4 +13,7 @@ public class StarDto {
 
     private Long starSystemId;
 
+    private String imagePath;
+
+
 }

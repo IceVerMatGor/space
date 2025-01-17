@@ -1,36 +1,50 @@
 package by.gorbov.space.controller;
 
-import by.gorbov.space.entity.Galaxy;
-import by.gorbov.space.repo.GalaxyRepository;
 import by.gorbov.space.service.GalaxyService;
-import by.gorbov.space.service.dto.StarDto;
+import by.gorbov.space.service.dto.GalaxyDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
+@Slf4j
 @RestController
-@RequestMapping("")
+@RequestMapping("/galaxies")
 public class GalaxyController {
+
 
     private final GalaxyService galaxyService;
 
-    private final GalaxyRepository galaxyRepository;
 
-    public GalaxyController(GalaxyService galaxyService, GalaxyRepository galaxyRepository) {
+    public GalaxyController(GalaxyService galaxyService) {
         this.galaxyService = galaxyService;
-        this.galaxyRepository = galaxyRepository;
     }
 
 
-    @PostMapping
-    void postGalaxies(@RequestBody List<Galaxy> galaxies){
-        galaxyRepository.saveAll(galaxies);
+    @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Boolean uploadPicture(@RequestPart(value = "picture", required = false) MultipartFile picture,
+                                 @RequestPart(value = "galaxy") GalaxyDto galaxyDto) throws IOException {
+        galaxyService.uploadPicture(picture, galaxyDto);
+        return Boolean.TRUE;
     }
+
+    @GetMapping(path = "/unload/{id}", produces = {"image/png","image/jpeg"})
+    public byte[] getPicture(@PathVariable Long id) {
+        return galaxyService.getPicture(id);
+    }
+
 
     @GetMapping
-    String string(){
-        galaxyService.to();
-        return "ljnljsfnal";
+    public List<GalaxyDto> getGalaxies() {
+        return galaxyService.getGalaxies();
     }
 
 

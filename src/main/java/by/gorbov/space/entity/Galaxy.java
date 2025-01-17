@@ -23,4 +23,7 @@ public class Galaxy extends AbstractEntity{
 
     @Column(name = "galaxy_type")
      private GalaxyType galaxyType;
+
+
+
 }
