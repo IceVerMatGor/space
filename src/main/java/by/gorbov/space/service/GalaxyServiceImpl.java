@@ -4,21 +4,31 @@ import by.gorbov.space.entity.Galaxy;
 import by.gorbov.space.repo.GalaxyRepository;
 import by.gorbov.space.service.dto.GalaxyDto;
 import by.gorbov.space.service.mapper.GalaxyMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+@Slf4j
 @Service
 public class GalaxyServiceImpl implements GalaxyService {
 
-    private static final Logger log = LoggerFactory.getLogger(GalaxyServiceImpl.class);
+    @Value("${directory}")
+    private String directory;
+
     private final GalaxyMapper galaxyMapper;
     private final GalaxyRepository galaxyRepository;
 
@@ -32,8 +42,8 @@ public class GalaxyServiceImpl implements GalaxyService {
 
         try {
             String path = "";
-            if (picture!=null) {
-                path = "images/" + picture.getOriginalFilename();
+            if (picture != null) {
+                path = directory + UUID.nameUUIDFromBytes(picture.getBytes());
                 picture.transferTo(Path.of(path));
             }
             galaxyDto.setImagePath(path);
@@ -46,17 +56,10 @@ public class GalaxyServiceImpl implements GalaxyService {
     }
 
     @Override
-    public byte[] getPicture(Long id) {
-        Optional<Galaxy> galaxy = galaxyRepository.findById(id);
-        if (galaxy.isPresent()) {
-            String path = galaxy.get().getImagePath();
-            try {
-                return Files.readAllBytes(Path.of(path));
-            } catch (IOException e) {
-                log.error(e.getLocalizedMessage());
-            }
-        }
-        return null;
+    public Resource getPicture(Long id) {
+        Galaxy galaxy = galaxyRepository.findById(id).orElseThrow(RuntimeException::new);
+        String path = galaxy.getImagePath();
+        return new FileSystemResource(Path.of(path));
     }
 
     @Override

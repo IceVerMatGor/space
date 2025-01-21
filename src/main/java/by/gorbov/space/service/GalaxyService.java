@@ -5,6 +5,7 @@ import by.gorbov.space.service.dto.GalaxyDto;
 import by.gorbov.space.service.mapper.GalaxyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +18,7 @@ public interface GalaxyService {
 
     void uploadPicture(MultipartFile picture,GalaxyDto galaxyDto);
 
-    byte[] getPicture(Long id);
+    Resource getPicture(Long id);
 
     List<GalaxyDto> getGalaxies();
 

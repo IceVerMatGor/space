@@ -3,6 +3,7 @@ package by.gorbov.space.controller;
 import by.gorbov.space.service.GalaxyService;
 import by.gorbov.space.service.dto.GalaxyDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeFactory;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +37,8 @@ public class GalaxyController {
         return Boolean.TRUE;
     }
 
-    @GetMapping(path = "/unload/{id}", produces = {"image/png","image/jpeg"})
-    public byte[] getPicture(@PathVariable Long id) {
+    @GetMapping(path = "/download/{id}")
+    public Resource getPicture(@PathVariable Long id) {
         return galaxyService.getPicture(id);
     }
 
