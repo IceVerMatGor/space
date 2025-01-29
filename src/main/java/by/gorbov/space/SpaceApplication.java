@@ -1,5 +1,6 @@
 package by.gorbov.space;
 
+import by.gorbov.space.lab.Singleton;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ public class SpaceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpaceApplication.class, args);
+
 	}
 
 }

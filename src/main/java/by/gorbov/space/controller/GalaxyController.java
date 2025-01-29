@@ -1,6 +1,8 @@
 package by.gorbov.space.controller;
 
+import by.gorbov.space.entity.Galaxy;
 import by.gorbov.space.service.GalaxyService;
+import by.gorbov.space.service.GalaxyServiceImpl;
 import by.gorbov.space.service.dto.GalaxyDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -14,6 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -23,7 +26,6 @@ public class GalaxyController {
 
 
     private final GalaxyService galaxyService;
-
 
     public GalaxyController(GalaxyService galaxyService) {
         this.galaxyService = galaxyService;

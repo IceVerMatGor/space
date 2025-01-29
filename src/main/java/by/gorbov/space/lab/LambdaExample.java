@@ -1,9 +1,11 @@
-package by.gorbov.space.entity;
+package by.gorbov.space.lab;
 
 
+
+import by.gorbov.space.entity.Galaxy;
+import by.gorbov.space.entity.StarSystem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,12 +21,19 @@ public class    LambdaExample {
             integerList.add(i);
         }
 
+
+
+
+
+
         // фильтрую лист
         List<Integer> filtredList = integerList
                 .stream()
                 .filter((I)->I%2==0)
                 .filter((I)->I%3==0)
                 .toList();
+
+
 
 
 

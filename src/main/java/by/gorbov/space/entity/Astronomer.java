@@ -15,7 +15,7 @@ import java.util.List;
 public class Astronomer implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -31,7 +31,7 @@ public class Astronomer implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<Authority> getAuthorities() {
         return authorityList;
     }
 
