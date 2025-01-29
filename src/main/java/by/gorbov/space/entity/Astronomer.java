@@ -26,7 +26,6 @@ public class Astronomer implements UserDetails {
             joinColumns = @JoinColumn(name = "astronomer_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id")
     )
-
     private List<Authority> authorityList;
 
 

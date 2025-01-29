@@ -9,6 +9,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,12 +33,15 @@ public class GalaxyController {
     }
 
 
+
     @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Boolean uploadPicture(@RequestPart(value = "picture", required = false) MultipartFile picture,
                                  @RequestPart(value = "galaxy") GalaxyDto galaxyDto) throws IOException {
         galaxyService.uploadPicture(picture, galaxyDto);
         return Boolean.TRUE;
     }
+
+
 
     @GetMapping(path = "/download/{id}")
     public Resource getPicture(@PathVariable Long id) {
