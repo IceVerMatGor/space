@@ -15,6 +15,8 @@ import lombok.Setter;
 public class Planet extends AbstractEntity{
 
 
+
+
     @ManyToOne
     @JoinColumn(name = "star_system_id")
     private StarSystem starSystem;

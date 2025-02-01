@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddRole {
-    private String username;
-    private String authority;
+    private Long astronomerId;
+    private Long authorityId;
 }
