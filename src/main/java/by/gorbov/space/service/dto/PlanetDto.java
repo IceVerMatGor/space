@@ -10,7 +10,7 @@ public class PlanetDto {
     private Long id;
 
     private String name;
-
+    
     private Long mass;
 
     private Long speed;

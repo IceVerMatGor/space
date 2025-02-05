@@ -36,7 +36,7 @@ public class GalaxyController {
 
     @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Boolean uploadPicture(@RequestPart(value = "picture", required = false) MultipartFile picture,
-                                 @RequestPart(value = "galaxy") GalaxyDto galaxyDto) throws IOException {
+                                 @RequestPart(value = "galaxy") GalaxyDto galaxyDto) {
         galaxyService.uploadPicture(picture, galaxyDto);
         return Boolean.TRUE;
     }

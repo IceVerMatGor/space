@@ -4,12 +4,15 @@ import by.gorbov.space.entity.Astronomer;
 import by.gorbov.space.repo.AstronomerRepository;
 import by.gorbov.space.service.dto.AddRole;
 import by.gorbov.space.service.dto.Login;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class AstronomerServiceImpl implements AstronomerService {
+public class AstronomerServiceImpl implements AstronomerService{
 
     private final AstronomerRepository astronomerRepository;
 
@@ -40,5 +43,10 @@ public class AstronomerServiceImpl implements AstronomerService {
         astronomerRepository.addAuthorityToAstronomer(
                 addRole.getAstronomerId(),
                 addRole.getAuthorityId());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return astronomerRepository.findByUsername(username);
     }
 }
