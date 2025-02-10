@@ -1,6 +1,7 @@
 package by.gorbov.space.service;
 
 import by.gorbov.space.entity.Star;
+import by.gorbov.space.entity.StarSystem;
 import by.gorbov.space.repo.StarRepository;
 import by.gorbov.space.service.dto.StarDto;
 import by.gorbov.space.service.mapper.StarMapper;
@@ -38,6 +39,9 @@ public class StarServiceImpl implements StarService {
         List<StarDto> starDtos;
         List<Star> stars;
         stars = starRepository.findAll();
+
+
+
         log.info("Repository find all ok");
         starDtos = starMapper.starsToStarsDto(stars);
         log.info("Mapper ok");

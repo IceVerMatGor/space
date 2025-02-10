@@ -41,6 +41,11 @@ public class GalaxyController {
         return Boolean.TRUE;
     }
 
+    @PutMapping("/{id}")
+    public void putPicture(@RequestPart(value = "picture") MultipartFile picture,
+                           @PathVariable Long id) throws IOException {
+        galaxyService.putPicture(picture, id);
+    }
 
 
     @GetMapping(path = "/download/{id}")

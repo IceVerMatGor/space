@@ -10,7 +10,7 @@ import lombok.*;
 @Table(name = "star")
 public class Star extends AbstractEntity{
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private StarSystem starSystem;
 
 }

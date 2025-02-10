@@ -1,4 +1,20 @@
 services:
+  space:
+    container_name: space
+    image: space
+    ports:
+      - "8080:8080"
+    build:
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_LIQUIBASE_URL=jdbc:postgresql://postgres:5432/spaceDB
+      - SPRING_LIQUIBASE_USER=postgres
+      - SPRING_LIQUIBASE_PASSWORD=belxodak
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/spaceDB
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=belxodak
+
+
   postgres:
     container_name: postgres
     image: postgres
@@ -6,12 +22,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: belxodak
       PGDATA: /data/postgres
+
     volumes:
       - postgres:/data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - postgres
     restart: unless-stopped
   pgadmin:
     container_name: pgadmin
@@ -24,12 +39,7 @@ services:
       - pgadmin:/var/lib/pgadmin
     ports:
       - "5050:80"
-    networks:
-      - postgres
     restart: unless-stopped
-networks:
-  postgres:
-    driver: bridge
 
 volumes:
   postgres:

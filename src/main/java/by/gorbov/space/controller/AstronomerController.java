@@ -33,6 +33,8 @@ public class AstronomerController {
     }
 
 
+
+
     @PatchMapping("/astronomers/addAuthority")
     public void addAuthorityToAstronomer(@RequestBody AddRole addRole) {
         astronomerService.addAuthorityToAstronomer(addRole);

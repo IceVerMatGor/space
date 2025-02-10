@@ -42,6 +42,12 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/changelog/astronomer_authorityTableCreate.sql
+  - changeSet:
+      id: image
+      author: Matvey
+      changes:
+        - sqlFile:
+            path: db/changelog/imageTableCreate.sql
 
 
 

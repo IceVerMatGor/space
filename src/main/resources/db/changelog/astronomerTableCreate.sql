@@ -1,6 +1,6 @@
 CREATE TABLE astronomer
 (
-    id   BIGSERIAL PRIMARY KEY,
-    username varchar,
+    id   BIGSERIAL UNIQUE PRIMARY KEY,
+    username varchar UNIQUE,
     password varchar
 )

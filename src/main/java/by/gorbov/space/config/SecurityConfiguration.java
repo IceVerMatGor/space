@@ -28,6 +28,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
+                .logout(logout ->{logout.logoutUrl("/logout");} )
                 .authorizeHttpRequests(auth -> {
                     auth
 

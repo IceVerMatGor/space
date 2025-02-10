@@ -22,5 +22,9 @@ public class Galaxy extends AbstractEntity{
      private GalaxyType galaxyType;
 
 
+    @OneToMany(mappedBy = "galaxy")
+    private List<Image> imageList;
+
+
 
 }

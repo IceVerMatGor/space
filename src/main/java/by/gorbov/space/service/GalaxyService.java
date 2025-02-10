@@ -1,15 +1,12 @@
 package by.gorbov.space.service;
 
-import by.gorbov.space.entity.Galaxy;
+import by.gorbov.space.entity.Image;
 import by.gorbov.space.service.dto.GalaxyDto;
-import by.gorbov.space.service.mapper.GalaxyMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -22,7 +19,5 @@ public interface GalaxyService {
 
     List<GalaxyDto> getGalaxies();
 
-
-
-
+    void putPicture(MultipartFile picture, Long id) throws IOException;
 }
