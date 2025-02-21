@@ -8,6 +8,7 @@ class SpaceApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

@@ -47,12 +47,8 @@ public class StarController {
         image.transferTo(file.toPath());
     }
 
-    @GetMapping(value = "/download", produces = MediaType.IMAGE_PNG_VALUE)
-    @ResponseBody
-    File download() throws IOException {
-        File file = new File("C:/Users/37529/IdeaProjects/space/space.zip");
-        return file;
-    }
+
+
 
 
 }

@@ -10,7 +10,7 @@ public interface AstronomerService extends UserDetailsService {
 
     Astronomer createAstronomer(Astronomer astronomer);
 
-    Astronomer login(Login login);
+
 
     Astronomer getAstronomer(Long id);
 

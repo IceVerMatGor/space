@@ -11,7 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PlanetMapper {
     List<Planet> planetsDtoToPlanets(List<PlanetDto> planetDtos);
+    Planet planetDtoToPlanet(PlanetDto planetDto);
 
     List<PlanetDto> planetsToPlanetsDto(List<Planet> planets);
-
+    PlanetDto planetToPlanetDto(Planet planet);
 }

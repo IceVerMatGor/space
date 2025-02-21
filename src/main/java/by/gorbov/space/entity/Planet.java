@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Planet extends AbstractEntity{
 
 
-
+    private Integer population = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "star_system_id")

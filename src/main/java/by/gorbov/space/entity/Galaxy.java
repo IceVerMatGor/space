@@ -15,7 +15,7 @@ public class Galaxy extends AbstractEntity{
 
 
 
-    @OneToMany(mappedBy = "galaxy")
+    @OneToMany(mappedBy = "galaxy", cascade = CascadeType.REMOVE)
     private List<StarSystem> starSystems;
 
     @Column(name = "galaxy_type")

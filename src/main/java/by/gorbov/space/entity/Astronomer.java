@@ -22,7 +22,7 @@ public class Astronomer implements UserDetails {
     private String username;
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "astronomer_authority",
             joinColumns = @JoinColumn(name = "astronomer_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id")

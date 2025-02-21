@@ -1,6 +1,6 @@
 CREATE TABLE image
 (
-    id                 varchar PRIMARY KEY UNIQUE,
+    id                 uuid PRIMARY KEY UNIQUE,
     path_to_file       varchar,
     original_file_name varchar,
     content_type       varchar,
