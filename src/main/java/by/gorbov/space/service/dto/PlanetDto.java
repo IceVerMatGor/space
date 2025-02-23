@@ -24,7 +24,7 @@ public class PlanetDto {
     @NotBlank
     private String imagePath;
 
-    private Integer population;
+    private Integer population = 0;
 
 
 }

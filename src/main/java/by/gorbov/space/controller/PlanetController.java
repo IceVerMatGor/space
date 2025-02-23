@@ -15,7 +15,7 @@ public class PlanetController {
 
     private final PlanetService planetService;
 
-    @PostMapping()
+    @PostMapping
     public PlanetDto createPlanet(@RequestBody PlanetDto planetDto) {
         return planetService.createPlanet(planetDto);
     }

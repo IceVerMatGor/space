@@ -26,9 +26,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain chain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors->{
-                    cors.configurationSource(corsConfigurationSource());
-                })
+                .cors(AbstractHttpConfigurer::disable)
                 .formLogin(loginConfig->{
                     loginConfig.loginProcessingUrl("/login")
                             .usernameParameter("username")
@@ -47,6 +45,9 @@ public class SecurityConfiguration {
                                     "/login",
                                     "/registration").permitAll()
                             .requestMatchers(
+                                    "/planets",
+                                    "/planets/change",
+                                    "/planets/migration/{fromId}/{toId}",
                                     "/stars",
                                     "/starSystems",
                                     "/galaxies",
@@ -56,22 +57,6 @@ public class SecurityConfiguration {
                                     "/astronomers/addAuthority").hasAuthority("ADMIN");
                 })
                 .build();
-    }
-
-
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setMaxAge(3600L);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 
 
