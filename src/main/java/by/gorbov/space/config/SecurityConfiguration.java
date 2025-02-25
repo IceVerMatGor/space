@@ -1,9 +1,14 @@
 package by.gorbov.space.config;
 
+import by.gorbov.space.entity.Planet;
 import io.jsonwebtoken.lang.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -39,7 +44,7 @@ public class SecurityConfiguration {
                 })
                 .authorizeHttpRequests(auth -> {
                     auth
-
+                            .requestMatchers(HttpMethod.POST,"/planets").hasAnyAuthority("PROFESSOR","ADMIN")
                             .requestMatchers(
                                     "/logout",
                                     "/login",
@@ -55,10 +60,23 @@ public class SecurityConfiguration {
                                     "/galaxies/download/{id}").authenticated()
                             .requestMatchers(
                                     "/astronomers/addAuthority").hasAuthority("ADMIN");
+
                 })
                 .build();
     }
 
+
+
+
+
+
+    @Bean
+    public RedisTemplate<Long, Planet> redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<Long, Planet> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+        // Add some specific configuration here. Key serializers, etc.
+        return template;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
