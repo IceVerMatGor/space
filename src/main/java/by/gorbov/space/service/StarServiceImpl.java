@@ -29,6 +29,7 @@ public class StarServiceImpl implements StarService {
     public void createStars(List<StarDto> starDtos) {
         log.info("post stars");
         List<Star> stars = starMapper.starsDtoToStars(starDtos);
+
         log.info("Mapper ok");
         starRepository.saveAll(stars);
     }

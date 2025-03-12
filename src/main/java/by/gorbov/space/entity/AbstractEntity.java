@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @MappedSuperclass
+@ToString
 public class AbstractEntity {
 
     @Id

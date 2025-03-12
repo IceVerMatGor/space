@@ -17,6 +17,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -47,7 +48,6 @@ public class GalaxyServiceImpl implements GalaxyService {
     @Override
     @Transactional(rollbackFor = SQLException.class, isolation = Isolation.READ_COMMITTED)
     public void uploadPicture(MultipartFile picture, GalaxyDto galaxyDto) {
-
         try {
             String path = "";
             if (picture != null) {

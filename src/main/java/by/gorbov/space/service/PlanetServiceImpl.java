@@ -4,7 +4,10 @@ import by.gorbov.space.entity.Planet;
 import by.gorbov.space.repo.PlanetRepository;
 import by.gorbov.space.service.dto.PlanetDto;
 import by.gorbov.space.service.mapper.PlanetMapper;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.databind.ser.std.JsonValueSerializer;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +23,7 @@ public class PlanetServiceImpl implements PlanetService {
 
     private final PlanetRepository planetRepository;
     private final PlanetMapper planetMapper;
+    private final RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
@@ -27,6 +31,9 @@ public class PlanetServiceImpl implements PlanetService {
     public PlanetDto createPlanet(PlanetDto planetDto) {
         Planet planet = planetMapper.planetDtoToPlanet(planetDto);
         Planet planetToSave = planetRepository.save(planet);
+        redisTemplate.opsForValue().set(planetToSave.getId().toString(),
+                planetDto
+        );
         return planetMapper.planetToPlanetDto(planetToSave);
     }
 
@@ -34,7 +41,12 @@ public class PlanetServiceImpl implements PlanetService {
     @Transactional
     public List<PlanetDto> getPlanets() {
         List<Planet> planets = planetRepository.findAll();
-        return planetMapper.planetsToPlanetsDto(planets);
+
+        PlanetDto planetDto = (PlanetDto) redisTemplate.opsForValue().get("11");
+
+        List<PlanetDto> planetDtoList = planetMapper.planetsToPlanetsDto(planets);
+        planetDtoList.add(planetDto);
+        return planetDtoList;
     }
 
     @Override

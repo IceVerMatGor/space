@@ -5,6 +5,7 @@ import by.gorbov.space.service.GalaxyService;
 import by.gorbov.space.service.GalaxyServiceImpl;
 import by.gorbov.space.service.dto.GalaxyDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeFactory;

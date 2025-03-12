@@ -6,6 +6,7 @@ import by.gorbov.space.service.dto.AddRole;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("")
 public class AstronomerController {
 
     private final AstronomerService astronomerService;

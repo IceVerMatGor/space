@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface GalaxyMapper {
+public interface GalaxyMapper extends AbstractMapper<Galaxy, GalaxyDto> {
 
 
     List<Galaxy> galaxiesDtoToGalaxies(List<GalaxyDto> galaxiesDto);
